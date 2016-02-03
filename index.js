@@ -23,6 +23,7 @@ var metalsmith = require('metalsmith'),
 
 var handlebars = require('handlebars'),
     fs = require('fs'),
+    tometeor = require('./lib/tometeor.js'),
     common = require('./lib/common.js');
   
 handlebars.registerPartial('header', fs.readFileSync('layouts/partials/header.hbt').toString());
@@ -97,5 +98,7 @@ metalsmith(__dirname)
   .build(function throwErr (err) { 
     if (err) {
       throw err;
+    } else {
+      tometeor.to_meteor();
     }
   });
